@@ -1,0 +1,4 @@
+name: TeleportUtil
+version: '1.0-SNAPSHOT'
+main: me.nbtc.teleportUtil.TeleportUtil
+api-version: '1.18'
