@@ -42,7 +42,7 @@ public class TeleportUtil {
             loadChunkAsync(location);
 
             // Teleport player after chunk is loaded
-            Bukkit.getScheduler().runTask(WildSays.getInstance(), () -> teleportPlayer(player, location));
+            Bukkit.getScheduler().runTask(your_instance, () -> teleportPlayer(player, location));
         }
     }
 
@@ -71,7 +71,7 @@ public class TeleportUtil {
             List<Player> batch = players.subList(i, end);
 
             // Execute the teleport in one go for each batch, but offloaded to a separate thread to prevent blocking
-            Bukkit.getScheduler().runTask(WildSays.getInstance(), () -> {
+            Bukkit.getScheduler().runTask(your_instance, () -> {
                 batch.forEach(player -> teleportPlayer(player, location));
             });
         }
@@ -95,7 +95,7 @@ public class TeleportUtil {
     // Pre-load the chunk asynchronously to ensure teleportation happens smoothly without chunk loading delays
     private static void loadChunkAsync(Location location) {
         // Load the chunk asynchronously so it won't block the main thread
-        Bukkit.getScheduler().runTask(WildSays.getInstance(), () -> {
+        Bukkit.getScheduler().runTask(your_instance, () -> {
             Chunk chunk = location.getWorld().getChunkAt(location);
             if (!chunk.isLoaded()) {
                 chunk.load(true);
